@@ -1,0 +1,37 @@
+# Publishes a GitHub release with a ready-to-install zip whenever a version tag (v1.0.0, v1.1.0, ...) is pushed.
+# To release: bump "version" in manifest.json, commit, then:  git tag v1.1.0 && git push origin v1.1.0
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check the tag matches manifest.json
+        run: |
+          v=$(python3 -c "import json;print(json.load(open('manifest.json'))['version'])")
+          [ "v$v" = "$GITHUB_REF_NAME" ] || { echo "manifest.json says $v but the tag is $GITHUB_REF_NAME"; exit 1; }
+      - name: Build the zip (only the files Chrome needs)
+        run: zip -qr "repo-recap-$GITHUB_REF_NAME.zip" . -x '.git/*' '.github/*' 'docs/*' 'tests/*' 'icons/icon.svg' '*.md' '.gitignore'
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat > notes.md <<'NOTES'
+          ## Install
+
+          1. Download **repo-recap-${{ github.ref_name }}.zip** below and unzip it.
+          2. Open `chrome://extensions`, turn on **Developer mode** (top right).
+          3. Click **Load unpacked** and choose the unzipped folder.
+          4. Pin **Repo Recap** from the 🧩 menu.
+
+          See the [README](https://github.com/${{ github.repository }}#readme) for what it does and how it works.
+          NOTES
+          gh release create "$GITHUB_REF_NAME" "repo-recap-$GITHUB_REF_NAME.zip" --title "Repo Recap $GITHUB_REF_NAME" --notes-file notes.md
