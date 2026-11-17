@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "Repo Recap",
+  "version": "1.0.0",
+  "description": "A sidebar on every GitHub repo: what it does, its tech stack, how to run it, and how active it is. Built for open-source hunting.",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://github.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "host_permissions": [
+    "https://api.github.com/*"
+  ],
+  "permissions": [
+    "storage"
+  ],
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "sidebar.css",
+        "icons/32.png"
+      ],
+      "matches": [
+        "https://github.com/*"
+      ]
+    }
+  ]
+}

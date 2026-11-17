@@ -1,0 +1,13 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Repo Recap settings</title>
+<style>body{max-width:640px;margin:40px auto;padding:0 20px;background:#0F1220;color:#E8EAF5;font:14px/1.6 system-ui,sans-serif}
+input{width:100%;padding:9px 11px;border-radius:8px;border:1px solid #2A3050;background:#171B2E;color:#E8EAF5;font:13px ui-monospace,monospace}
+button{margin-top:10px;border:0;border-radius:8px;padding:9px 14px;font-weight:600;background:linear-gradient(90deg,#7C5CFF,#22D3EE);color:#fff;cursor:pointer}
+.m{color:#9AA0BF}a{color:#A78BFA}</style></head>
+<body><h1 style="font-size:20px">Repo Recap · settings</h1>
+<p class="m">Optional. Without a token, GitHub allows 60 requests an hour (about 10 repos). A token raises that to 5,000.
+Create a <a href="https://github.com/settings/personal-access-tokens/new" target="_blank">fine-grained token</a> with <b>public repositories, read-only</b> access and no other permissions.
+It's stored only in this browser and sent only to api.github.com.</p>
+<input id="token" type="password" placeholder="github_pat_…" autocomplete="off">
+<button id="save">Save</button> <span id="msg" class="m"></span>
+<script src="options.js"></script></body></html>
