@@ -4,6 +4,10 @@
 
 <p align="center"><img src="docs/sidebar.png" width="760" alt="Repo Recap sidebar on a GitHub repo: what it does, tech stack with a language bar, how to run with copyable commands, and an activity rating"></p>
 
+<p align="center"><a href="https://github.com/HemashreeVI/repo-recap/releases/latest"><img src="https://img.shields.io/badge/%E2%AC%87_Download-latest_release_(.zip)-2ea44f?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Download the latest release"></a></p>
+
+> **Install in 1 minute:** download the `.zip` from the [latest release](https://github.com/HemashreeVI/repo-recap/releases/latest) → unzip it → open `chrome://extensions` → turn on **Developer mode** → **Load unpacked** → pick the unzipped folder.
+
 ## What you get
 
 | Section | How it works |
